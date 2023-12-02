@@ -1,7 +1,11 @@
 import pandas as pd
+import pickle
+import os
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+
+NOME_MODELO = 'modelo.sav'
 
 def treinar_modelo():
     df = pd.read_csv('casas.csv')
@@ -15,7 +19,10 @@ def treinar_modelo():
     linear_regression = LinearRegression()
     linear_regression.fit(X_train, y_train)
 
-    return linear_regression
+    pickle.dump(linear_regression, open(NOME_MODELO, 'wb'))
 
-def prever_preco(modelo, X):
-    return modelo.predict(X)
+def prever_preco(X):
+    if os.path.exists(NOME_MODELO):
+        modelo = pickle.load(open(NOME_MODELO, 'rb'))
+        return modelo.predict(X)    
+    return [-1]
