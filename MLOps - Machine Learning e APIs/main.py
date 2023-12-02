@@ -22,12 +22,14 @@ def analisar_sentimento(frase):
     return 'A polaridade é ' + str(polaridade)
 
 @app.route('/treinar_modelo_cotacao/')
+@basic_auth.required
 def treinar_modelo_cotacao():
     casas.treinar_modelo()
 
     return 'OK'
 
 @app.route('/cotacao/', methods=['POST'])
+@basic_auth.required
 def cotacao():
     dados = request.get_json()
     dados = [dados[key] for key in dados.keys()]
