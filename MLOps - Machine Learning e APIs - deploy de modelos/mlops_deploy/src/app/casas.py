@@ -23,6 +23,6 @@ def treinar_modelo():
 
 def prever_preco(X):
     if os.path.exists(NOME_MODELO):
-        modelo = pickle.load(open(NOME_MODELO, 'rb'))
+        modelo = pickle.load(open('../../models/' + NOME_MODELO, 'rb'))
         return modelo.predict(X)    
     return [-1]

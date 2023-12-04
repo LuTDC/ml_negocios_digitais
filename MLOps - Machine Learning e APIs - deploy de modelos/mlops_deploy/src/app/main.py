@@ -1,13 +1,15 @@
 from flask import Flask, request, jsonify
 from flask_basicauth import BasicAuth
 
+import config
+
 import sentimentos
 import casas
 
 app = Flask(__name__)
 
-app.config['BASIC_AUTH_USERNAME'] = 'luana'
-app.config['BASIC_AUTH_PASSWORD'] = 'luana'
+app.config['BASIC_AUTH_USERNAME'] = config.BASIC_AUTH_USERNAME
+app.config['BASIC_AUTH_PASSWORD'] = config.BASIC_AUTH_PASSWORD
 
 basic_auth = BasicAuth(app)
 
@@ -38,4 +40,4 @@ def cotacao():
 
     return jsonify(preco=preco) 
 
-app.run(debug=True)
+app.run(debug=True, host='0.0.0.0')
