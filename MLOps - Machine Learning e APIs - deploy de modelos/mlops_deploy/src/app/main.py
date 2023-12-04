@@ -2,14 +2,15 @@ from flask import Flask, request, jsonify
 from flask_basicauth import BasicAuth
 
 import config
+# import os
 
 import sentimentos
 import casas
 
 app = Flask(__name__)
 
-app.config['BASIC_AUTH_USERNAME'] = config.BASIC_AUTH_USERNAME
-app.config['BASIC_AUTH_PASSWORD'] = config.BASIC_AUTH_PASSWORD
+app.config['BASIC_AUTH_USERNAME'] = config.BASIC_AUTH_USERNAME # os.environ.get('BASIC_AUTH_USERNAME')
+app.config['BASIC_AUTH_PASSWORD'] = config.BASIC_AUTH_PASSWORD # os.environ.get('BASIC_AUTH_PASSWORD')
 
 basic_auth = BasicAuth(app)
 
